@@ -16,7 +16,6 @@
     "postpack": "rm -rf dist"
   },
   "devDependencies": {
-    "@atls/schematics": "workspace:*",
     "@types/node": "22.9.0",
     "@types/react": "18.3.12",
     "@yarnpkg/libui": "3.0.1",

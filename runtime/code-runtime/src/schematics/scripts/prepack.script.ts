@@ -10,7 +10,7 @@ import { renameJsImportsUtil } from './utils/index.js'
 
 const dir = fileURLToPath(new URL('.', import.meta.url))
 const srcDir = join(dir, '../schematic/')
-const outDir = join(dir, '../../dist/')
+const outDir = join(dir, '../../../dist/schematic/')
 
 const allFiles = getAllFiles(srcDir)
 

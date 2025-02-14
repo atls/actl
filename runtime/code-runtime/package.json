@@ -12,7 +12,8 @@
     "./typescript": "./src/typescript.ts",
     "./svgr": "./src/svgr.ts",
     "./ts-node-register": "./src/ts-node-register.ts",
-    "./ts-ext-register": "./src/ts-ext-register.ts"
+    "./ts-ext-register": "./src/ts-ext-register.ts",
+    "./collection": "./src/schematics/schematic/collection.json"
   },
   "main": "src/index.ts",
   "types": "types/index.d.ts",
@@ -22,10 +23,12 @@
   ],
   "scripts": {
     "build": "yarn library build",
-    "prepack": "yarn run build",
+    "prepack": "yarn run build && rm -rf ./dist/schematics && yarn node ./src/schematics/scripts/cjs-build.script.ts && yarn node ./src/schematics/scripts/prepack.script.ts",
     "postpack": "rm -rf dist"
   },
   "dependencies": {
+    "@angular-devkit/core": "19.1.5",
+    "@angular-devkit/schematics": "19.1.5",
     "@atls/config-eslint": "workspace:*",
     "@atls/config-prettier": "workspace:*",
     "@atls/config-typescript": "workspace:*",
@@ -35,6 +38,7 @@
     "eslint": "9.17.0",
     "node-loader": "2.0.0",
     "null-loader": "4.0.1",
+    "strip-json-comments": "3.1.1",
     "ts-loader": "9.5.1",
     "ts-node": "10.9.2",
     "typescript": "5.5.4",
@@ -42,12 +46,14 @@
   },
   "devDependencies": {
     "@types/eslint": "9.6.1",
-    "@types/node": "22.9.0"
+    "@types/node": "22.9.0",
+    "esbuild": "0.24.2"
   },
   "publishConfig": {
     "access": "public",
     "exports": {
       "./package.json": "./package.json",
+      "./collection": "./dist/schematic/collection.json",
       "./types": "./types/index.d.ts",
       ".": {
         "import": "./dist/index.js",
