@@ -2,7 +2,7 @@
 
 import type { StreamReport }  from '@yarnpkg/core'
 
-import { runSchematicHelper } from '@atls/schematics'
+import { runSchematicHelper } from '../helpers/index.js'
 
 type StreamReportCallbackType = Parameters<typeof StreamReport.start>[1]
 

@@ -13,7 +13,7 @@ export const esbuildBuildStep = async ({ allFiles, outDir }: MainBuildPartProps)
     logLevel: 'error',
     entryPoints: tsJsFiles,
     outdir: outDir,
-    outbase: 'src/schematic',
+    outbase: 'src/schematics/schematic',
     format: 'cjs',
     platform: 'node',
     sourcemap: false,

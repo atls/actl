@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url'
 
 const require = createRequire(import.meta.url)
 
-const PACKAGE_NAME = '@atls/schematics'
+const PACKAGE_NAME = '@atls/code-runtime/collection'
 
 const findPnpApiPath = (cwd = process.cwd()): string => {
   if (process.versions.pnp) {
@@ -25,17 +25,23 @@ const setupPnp = async (cwd = process.cwd()): Promise<void> => {
   pnp.setup()
 }
 
+const getPackageDir = async (): Promise<string> => {
+  const packagePath = fileURLToPath(await import.meta.resolve(PACKAGE_NAME))
+  const packageDir = dirname(packagePath)
+  return packageDir
+}
+
 export const resolveSchematics = async (cwd = process.cwd()): Promise<string> => {
   try {
-    return join(dirname(require.resolve(PACKAGE_NAME)), '..')
+    return getPackageDir()
   } catch {
     await setupPnp(cwd)
-    return join(dirname(require.resolve(PACKAGE_NAME)), '..')
+    return getPackageDir()
   }
 }
 
 export const getCollectionPath = async (): Promise<string> => {
   const packagePath = await resolveSchematics(process.cwd())
-  const collectionPath = join(packagePath, 'dist', 'collection.json')
+  const collectionPath = join(packagePath, 'collection.json')
   return collectionPath
 }
