@@ -2,13 +2,12 @@
 
 import { BaseCommand }             from '@yarnpkg/cli'
 import { Configuration }           from '@yarnpkg/core'
-import { Project }                 from '@yarnpkg/core'
 import { StreamReport }            from '@yarnpkg/core'
 import { Option }                  from 'clipanion'
 
-import { getStreamReportCallback } from '../getters/index.js'
-import { getStreamReportOptions }  from '../getters/index.js'
-import { getCollectionPath }       from '../getters/index.js'
+import { getStreamReportCallback } from '@atls/code-schematics'
+import { getStreamReportOptions }  from '@atls/code-schematics'
+import { getCollectionPath }       from '@atls/code-schematics'
 
 export class GenerateProjectCommand extends BaseCommand {
   static override paths = [['generate', 'project']]

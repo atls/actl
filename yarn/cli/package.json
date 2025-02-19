@@ -13,11 +13,12 @@
     "dist"
   ],
   "scripts": {
-    "build": "yarn run build:clean && yarn run build:version && yarn run build:bundle && yarn run build:fix && yarn run build:dist && yarn run build:version",
+    "build": "yarn run build:schemaic && yarn run build:clean && yarn run build:version && yarn run build:bundle && yarn run build:fix && yarn run build:dist && yarn run build:version",
     "build:bundle": "builder build bundle --no-git-hash && mv bundles/yarn.js bundles/yarn.mjs",
     "build:clean": "rm -rf dist",
     "build:dist": "mv bundles dist",
     "build:fix": "yarn node patches/cli.patch.mjs",
+    "build:schemaic": "yarn workspace @atls/code-schematics prepack",
     "build:version": "yarn node patches/version-postfix-toggle.mjs",
     "fix": "yarn run build:fix",
     "prepack": "yarn run build",
